@@ -1,0 +1,2129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nanotecnologia do Zero ao Avançado - AVA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #4a148c;
+            --accent-color: #00acc1;
+            --light-bg: #f5f7fa;
+            --dark-text: #263238;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark-text);
+            background-color: var(--light-bg);
+        }
+        
+        .navbar {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: 100px 100px;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background-color: var(--accent-color);
+        }
+        
+        /* Timeline Styles */
+        .timeline-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-color), var(--primary-color));
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin: 50px 0;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            padding-right: calc(50% + 30px);
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) {
+            padding-left: calc(50% + 30px);
+            text-align: left;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background-color: var(--accent-color);
+            border: 4px solid white;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 0 4px rgba(0, 172, 193, 0.2);
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover .timeline-dot {
+            background-color: var(--primary-color);
+            box-shadow: 0 0 0 8px rgba(26, 35, 126, 0.2);
+        }
+        
+        .timeline-content {
+            background: white;
+            padding: 20px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -20px;
+            border-left-color: white;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -20px;
+            border-right-color: white;
+        }
+        
+        .timeline-icon {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-content:hover .timeline-icon {
+            background-color: var(--primary-color);
+            transform: scale(1.1);
+        }
+        
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .timeline-description {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .timeline-topics {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 15px 0;
+        }
+        
+        .timeline-topics li {
+            padding: 5px 0;
+            color: #555;
+            font-size: 0.9rem;
+        }
+        
+        .timeline-topics li i {
+            color: var(--accent-color);
+            margin-right: 8px;
+        }
+        
+        .btn-module {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 8px 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .btn-module:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Module Detail Styles */
+        .module-detail {
+            display: none;
+            background-color: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 30px 0;
+            animation: slideIn 0.5s ease;
+            border: 2px solid var(--accent-color);
+        }
+        
+        .module-detail.active {
+            display: block;
+        }
+        
+        .module-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .module-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 0;
+        }
+        
+        .module-number {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 60px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-right: 20px;
+        }
+        
+        .concept-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--accent-color);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .concept-box h5 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .image-placeholder {
+            background-color: #e9ecef;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            margin: 25px 0;
+            color: #6c757d;
+            border: 2px dashed #dee2e6;
+        }
+        
+        .image-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                padding-left: 50px !important;
+                padding-right: 0 !important;
+                text-align: left !important;
+            }
+            
+            .timeline-dot {
+                left: 20px;
+            }
+            
+            .timeline-content::before {
+                display: none;
+            }
+            
+            .hero-section {
+                padding: 60px 0;
+            }
+            
+            .module-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .module-number {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+        
+        .interactive-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        
+        .quiz-option {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .quiz-option:hover {
+            background-color: #e9ecef;
+        }
+        
+        .quiz-option.correct {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+        
+        .quiz-option.incorrect {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+        
+        .footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 40px 0;
+            margin-top: 50px;
+        }
+        
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .glossary-item {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .glossary-term {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .nano-simulator {
+            background-color: #263238;
+            border-radius: 10px;
+            padding: 20px;
+            color: white;
+            text-align: center;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .nano-simulator canvas {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .btn-custom {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 25px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-custom:hover {
+            background-color: #0097a7;
+            color: white;
+        }
+        
+        .tab-content {
+            padding: 20px;
+            border: 1px solid #dee2e6;
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .nav-tabs {
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .nav-tabs .nav-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            border: none;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .nav-tabs .nav-link.active {
+            color: var(--accent-color);
+            background-color: transparent;
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .certificate {
+            background-color: white;
+            border: 10px solid var(--accent-color);
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .certificate h2 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .certificate .student-name {
+            font-style: italic;
+            font-size: 1.2rem;
+            margin: 20px 0;
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+            padding: 0 20px 5px;
+        }
+        
+        .resource-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .resource-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+        
+        .resource-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .resource-list i {
+            color: var(--accent-color);
+            margin-right: 10px;
+        }
+        
+        .close-module {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-module:hover {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-atom"></i> NanoTec AVA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#modules">Módulos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#activities">Atividades</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#resources">Recursos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#evaluation">Avaliação</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container hero-content">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">Nanotecnologia do Zero ao Avançado</h1>
+                    <p class="lead mb-4">Explore o mundo fascinante da nanociência e nanotecnologia através de um ambiente de aprendizagem interativo e completo.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#modules" class="btn btn-light btn-lg">Começar Agora</a>
+                        
+                    </div>
+                </div>
+           
+            </div>
+        </div>
+    </section>
+
+    <!-- Modules Timeline Section -->
+    <section id="modules" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">Jornada de Aprendizagem</h2>
+            <p class="text-center mb-5">Explore nossa linha do tempo de módulos e clique em cada um para acessar o conteúdo completo</p>
+            
+            <div class="timeline-container">
+                <div class="timeline">
+                    <!-- Module 1 -->
+                    <div class="timeline-item" style="animation-delay: 0.1s;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h3 class="timeline-title">Módulo 1</h3>
+                            <h4 class="timeline-title">Fundamentos da Nanotecnologia</h4>
+                            <p class="timeline-description">Conceitos básicos, escala nanométrica e propriedades únicas</p>
+                            <ul class="timeline-topics">
+                                <li><i class="fas fa-check-circle"></i> Escala nanométrica</li>
+                                <li><i class="fas fa-check-circle"></i> Histórico (Feynman)</li>
+                                <li><i class="fas fa-check-circle"></i> Propriedades da nanoescala</li>
+                            </ul>
+                            <button class="btn btn-module" onclick="toggleModule('module1')">
+                                <i class="fas fa-arrow-right"></i> Acessar Módulo
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Module 1 Content -->
+                    <div id="module1" class="module-detail">
+                        <button class="close-module" onclick="toggleModule('module1')">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <div class="module-header">
+                            <div class="d-flex align-items-center">
+                                <div class="module-number">1</div>
+                                <h2 class="module-title">Fundamentos da Nanotecnologia</h2>
+                            </div>
+                        </div>
+                        
+                        <h3>Introdução à Nanociência e Nanotecnologia</h3>
+                        <p>A nanotecnologia é uma área multidisciplinar que envolve a manipulação da matéria em escala atômica e molecular, tipicamente na faixa de 1 a 100 nanômetros. Um nanômetro (nm) equivale a um bilionésimo de metro (10⁻⁹ m). Para ter uma ideia da escala, um fio de cabelo humano tem aproximadamente 80.000 nanômetros de diâmetro.</p>
+                        
+                        <div class="concept-box">
+                            <h5>Conceito-chave:</h5>
+                            <p>Nanotecnologia não é apenas sobre fazer coisas pequenas, mas sobre explorar as novas propriedades que os materiais apresentam nesta escala.</p>
+                        </div>
+                        
+                        <h3>Escala Nanométrica</h3>
+                        <p>Para compreender a nanotecnologia, é fundamental visualizar as diferentes escalas de tamanho:</p>
+                        
+                        <div class="image-placeholder">
+                            <i class="fas fa-ruler-combined"></i>
+                            <p>Infográfico comparativo: Milímetro → Micrômetro → Nanômetro</p>
+                        </div>
+                        
+                        <ul>
+                            <li><strong>Milímetro (mm):</strong> 10⁻³ m - Visível a olho nu</li>
+                            <li><strong>Micrômetro (μm):</strong> 10⁻⁶ m - Visível com microscópio óptico</li>
+                            <li><strong>Nanômetro (nm):</strong> 10⁻⁹ m - Requer microscópio eletrônico</li>
+                            <li><strong>Angström (Å):</strong> 10⁻¹⁰ m - Escala atômica</li>
+                        </ul>
+                        
+                        <h3>Histórico da Nanotecnologia</h3>
+                        <p>Embora o termo "nanotecnologia" seja relativamente recente, a ideia de manipular a matéria em escala atômica foi proposta pela primeira vez pelo físico Richard Feynman em 1959, em sua famosa palestra "There's Plenty of Room at the Bottom".</p>
+                        
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <h5>1959 - Palestra de Feynman</h5>
+                                <p>Richard Feynman propõe a ideia de manipular átomos individualmente, prevendo o desenvolvimento de tecnologias em escala nanométrica.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5>1974 - Termo "Nanotecnologia"</h5>
+                                <p>O cientista japonês Norio Taniguchi cunha o termo "nanotecnologia" para descrever a fabricação de materiais com precisão nanométrica.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5>1981 - Microscópio de Varredura por Túnel</h5>
+                                <p>Gerd Binnig e Heinrich Rohrer desenvolvem o STM, permitindo visualizar e manipular átomos individualmente.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5>1985 - Descoberta dos Fulerenos</h5>
+                                <p>Robert Curl, Harold Kroto e Richard Smalley descobrem os fulerenos (C60), uma nova forma de carbono.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5>1991 - Nanotubos de Carbono</h5>
+                                <p>Sumio Iijima descobre os nanotubos de carbono, revolucionando o campo dos nanomateriais.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5>2004 - Grafeno</h5>
+                                <p>Andre Geim e Konstantin Novoselov isolam o grafeno, uma camada única de átomos de carbono.</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Propriedades Únicas da Nanoescala</h3>
+                        <p>Quando os materiais são reduzidos à escala nanométrica, eles apresentam propriedades diferentes das observadas em escala macroscópica. Isso ocorre devido a dois fenômenos principais:</p>
+                        
+                        <h4>1. Efeitos Quânticos</h4>
+                        <p>Em escalas muito pequenas, as leis da mecânica quântica tornam-se dominantes. Os elétrons comportam-se como ondas e partículas simultaneamente, levando a fenômenos como:</p>
+                        
+                        <ul>
+                            <li><strong>Confinamento quântico:</strong> Em nanopartículas semicondutoras, os elétrons ficam confinados em um espaço pequeno, alterando suas propriedades eletrônicas e ópticas.</li>
+                            <li><strong>Efeito túnel:</strong> Elétrons podem "tunelar" através de barreiras de energia que seriam intransponíveis em escalas maiores.</li>
+                        </ul>
+                        
+                        <h4>2. Aumento da Relação Superfície/Volume</h4>
+                        <p>À medida que o tamanho de uma partícula diminui, sua área superficial aumenta em relação ao seu volume. Isso tem implicações importantes:</p>
+                        
+                        <ul>
+                            <li><strong>Reatividade química aumentada:</strong> Mais átomos na superfície significa mais sítios ativos para reações químicas.</li>
+                            <li><strong>Melhor propriedades mecânicas:</strong> Materiais como os nanotubos de carbono apresentam resistência excepcional devido à sua estrutura perfeita.</li>
+                            <li><strong>Propriedades térmicas e elétricas modificadas:</strong> A condutividade térmica e elétrica pode ser drasticamente alterada.</li>
+                        </ul>
+                        
+                        <div class="concept-box">
+                            <h5>Exemplo Prático:</h5>
+                            <p>O ouro em escala nanométrica (nanopartículas de ouro) não tem a cor amarela característica. Dependendo do tamanho e forma, pode aparecer vermelho, roxo ou azul devido à ressonância plasmônica de superfície.</p>
+                        </div>
+                        
+                        <h3>Abordagens da Nanotecnologia</h3>
+                        <p>Existem duas abordagens principais para a fabricação de nanoestruturas:</p>
+                        
+                        <h4>1. Abordagem Top-Down</h4>
+                        <p>Parte de materiais em escala macroscópica e os reduz progressivamente até a escala nanométrica através de processos de litografia, usinagem ou erosão.</p>
+                        
+                        <div class="image-placeholder">
+                            <i class="fas fa-compress-alt"></i>
+                            <p>Representação da abordagem top-down: de maior para menor escala</p>
+                        </div>
+                        
+                        <p><strong>Vantagens:</strong></p>
+                        <ul>
+                            <li>Controle preciso sobre a forma e tamanho</li>
+                            <li>Compatível com tecnologias de fabricação existentes</li>
+                        </ul>
+                        
+                        <p><strong>Desvantagens:</strong></p>
+                        <ul>
+                            <li>Limitações de resolução</li>
+                            <li>Geração de resíduos e imperfeições</li>
+                            <li>Alto custo</li>
+                        </ul>
+                        
+                        <h4>2. Abordagem Bottom-Up</h4>
+                        <p>Constrói nanoestruturas átomo por átomo ou molécula por molécula, através de processos de auto-organização ou síntese química.</p>
+                        
+                        <div class="image-placeholder">
+                            <i class="fas fa-expand-alt"></i>
+                            <p>Representação da abordagem bottom-up: de menor para maior escala</p>
+                        </div>
+                        
+                        <p><strong>Vantagens:</strong></p>
+                        <ul>
+                            <li>Potencial para estruturas perfeitas</li>
+                            <li>Menor geração de resíduos</li>
+                            <li>Possibilidade de estruturas complexas</li>
+                        </ul>
+                        
+                        <p><strong>Desvantagens:</strong></p>
+                        <ul>
+                            <li>Dificuldade de controle em larga escala</li>
+                            <li>Processos lentos</li>
+                            <li>Desafios de integração com tecnologias existentes</li>
+                        </ul>
+                        
+                        <h3>Importância da Nanotecnologia</h3>
+                        <p>A nanotecnologia é considerada uma tecnologia revolucionária com potencial para impactar praticamente todos os setores da sociedade:</p>
+                        
+                        <ul>
+                            <li><strong>Medicina:</strong> Desenvolvimento de sistemas de entrega de medicamentos direcionados, imagens moleculares e regeneração tecidual.</li>
+                            <li><strong>Energia:</strong> Células solares mais eficientes, baterias de maior capacidade e sistemas de armazenamento de hidrogênio.</li>
+                            <li><strong>Eletrônica:</strong> Transistores menores e mais rápidos, memórias de alta densidade e dispositivos flexíveis.</li>
+                            <li><strong>Materiais:</strong> Materiais mais leves, resistentes e com propriedades específicas para aplicações em construção, automotiva e aeroespacial.</li>
+                            <li><strong>Meio ambiente:</strong> Sistemas de filtragem de água, remediação de contaminantes e sensores para monitoramento ambiental.</li>
+                        </ul>
+                        
+                        <div class="concept-box">
+                            <h5>Reflexão:</h5>
+                            <p>A nanotecnologia representa uma mudança de paradigma na forma como manipulamos a matéria. Em vez de trabalhar com as propriedades em massa dos materiais, podemos projetar e controlar suas propriedades fundamentais em nível atômico.</p>
+                        </div>
+                        
+                        <h3>Atividades Práticas</h3>
+                        <h4>1. Explorando Escalas</h4>
+                        <p><strong>Objetivo:</strong> Compreender as diferentes escalas de tamanho envolvidas na nanotecnologia.</p>
+                        <p><strong>Materiais:</strong> Régua, folha de papel, caneta.</p>
+                        <p><strong>Procedimento:</strong></p>
+                        <ol>
+                            <li>Desenhe um quadrado de 10 cm de lado em uma folha de papel.</li>
+                            <li>Dentro deste quadrado, desenhe outro de 1 cm (10 mm).</li>
+                            <li>Dentro do segundo quadrado, tente desenhar um de 1 mm.</li>
+                            <li>Reflexão: Quantas vezes você conseguiria dividir o quadrado original até chegar à escala nanométrica?</li>
+                        </ol>
+                        
+                        <h4>2. Simulação de Confinamento Quântico</h4>
+                        <p><strong>Objetivo:</strong> Entender como o confinamento afeta as propriedades dos materiais.</p>
+                        <p><strong>Materiais:</strong> Copo transparente, água, corante alimentício.</p>
+                        <p><strong>Procedimento:</strong></p>
+                        <ol>
+                            <li>Encha um copo com água e adicione algumas gotas de corante.</li>
+                            <li>Observe como o corante se espalha livremente na água.</li>
+                            <li>Agora, coloque uma pequena quantidade de água com corante em um tubo capilar ou entre duas lâminas de vidro muito próximas.</li>
+                            <li>Observe como o movimento do corante é restrito no espaço confinado.</li>
+                            <li>Reflexão: Como essa restrição de movimento se relaciona com o confinamento quântico em nanopartículas?</li>
+                        </ol>
+                        
+                        <h3>Quiz de Verificação</h3>
+                        <div class="interactive-section">
+                            <p>Responda às perguntas abaixo para verificar seu entendimento:</p>
+                            
+                            <div class="mb-3">
+                                <p>1. Qual é a faixa de tamanho típica da nanotecnologia?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q1" id="q1a">
+                                    <label class="form-check-label" for="q1a">1 a 100 micrômetros</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q1" id="q1b">
+                                    <label class="form-check-label" for="q1b">1 a 100 nanômetros</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q1" id="q1c">
+                                    <label class="form-check-label" for="q1c">1 a 100 picômetros</label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <p>2. Quem é considerado o "pai" da nanotecnologia?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q2" id="q2a">
+                                    <label class="form-check-label" for="q2a">Albert Einstein</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q2" id="q2b">
+                                    <label class="form-check-label" for="q2b">Richard Feynman</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q2" id="q2c">
+                                    <label class="form-check-label" for="q2c">Niels Bohr</label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <p>3. Qual fenômeno quântico é responsável pelas propriedades únicas dos nanomateriais?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q3" id="q3a">
+                                    <label class="form-check-label" for="q3a">Confinamento quântico</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q3" id="q3b">
+                                    <label class="form-check-label" for="q3b">Efeito Doppler</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q3" id="q3c">
+                                    <label class="form-check-label" for="q3c">Lei de Ohm</label>
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-custom" onclick="checkQuiz('module1')">Verificar Respostas</button>
+                            <div id="quizResult-module1" class="mt-3"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Module 2 -->
+                    <div class="timeline-item" style="animation-delay: 0.2s;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <h3 class="timeline-title">Módulo 2</h3>
+                            <h4 class="timeline-title">Nanoestruturas de Carbono</h4>
+                            <p class="timeline-description">Alotropia, nanotubos, síntese e caracterização</p>
+                            <ul class="timeline-topics">
+                                <li><i class="fas fa-check-circle"></i> Formas alotrópicas</li>
+                                <li><i class="fas fa-check-circle"></i> Nanotubos de carbono</li>
+                                <li><i class="fas fa-check-circle"></i> Métodos de síntese</li>
+                            </ul>
+                            <button class="btn btn-module" onclick="toggleModule('module2')">
+                                <i class="fas fa-arrow-right"></i> Acessar Módulo
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Module 2 Content -->
+                    <div id="module2" class="module-detail">
+                        <button class="close-module" onclick="toggleModule('module2')">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <div class="module-header">
+                            <div class="d-flex align-items-center">
+                                <div class="module-number">2</div>
+                                <h2 class="module-title">Nanoestruturas de Carbono</h2>
+                            </div>
+                        </div>
+                        
+                        <h3>Introdução às Nanoestruturas de Carbono</h3>
+                        <p>O carbono é um elemento extraordinário que pode formar diversas estruturas com propriedades físicas e químicas distintas. Essa capacidade de se arranjar em diferentes configurações é conhecida como alotropia. Na escala nanométrica, o carbono forma estruturas fascinantes que revolucionaram a ciência dos materiais.</p>
+                        
+                        <div class="concept-box">
+                            <h5>Conceito-chave:</h5>
+                            <p>A versatilidade do carbono se deve à sua capacidade de formar quatro ligações covalentes estáveis, permitindo uma infinidade de estruturas.</p>
+                        </div>
+                        
+                        <h3>Formas Alotrópicas do Carbono</h3>
+                        <p>Tradicionalmente, conhecemos duas formas alotrópicas do carbono: o diamante e o grafite. No entanto, nas últimas décadas, novas formas foram descobertas, expandindo nosso entendimento sobre este elemento.</p>
+                        
+                        <h4>1. Diamante</h4>
+                        <p>O diamante é a forma mais dura conhecida de carbono. Cada átomo de carbono está ligado a outros quatro átomos em uma estrutura tetraédrica tridimensional.</p>
+                        
+                        <div class="image-placeholder">
+                            <i class="fas fa-gem"></i>
+                            <p>Estrutura cristalina do diamante: rede tetraédrica</p>
+                        </div>
+                        
+                        <p><strong>Propriedades:</strong></p>
+                        <ul>
+                            <li>Dureza extrema (10 na escala de Mohs)</li>
+                            <li>Alta condutividade térmica</li>
+                            <li>Baixa condutividade elétrica (isolante)</li>
+                            <li>Alto índice de refração</li>
+                        </ul>
+                        
+                        <h4>2. Grafite</h4>
+                        <p>O grafite consiste em camadas bidimensionais de átomos de carbono arranjados em anéis hexagonais. As camadas são mantidas juntas por fracas forças de van der Waals.</p>
+                        
+                        <div class="image-placeholder">
+                            <i class="fas fa-layer-group"></i>
+                            <p>Estrutura em camadas do grafite</p>
+                        </div>
+                        
+                        <p><strong>Propriedades:</strong></p>
+                        <ul>
+                            <li>Macio e escorregadio</li>
+                            <li>Bom condutor de eletricidade</li>
+                            <li>Alta resistência térmica</li>
+                            <li>Usado em lápis e lubrificantes</li>
+                        </ul>
+                        
+                        <h4>3. Fulerenos</h4>
+                        <p>Descobertos em 1985 por Kroto, Smalley e Curl (Prêmio Nobel de Química 1996), os fulerenos são moléculas fechadas de carbono. O mais comum é o C60, com 60 átomos de carbono formando uma estrutura semelhante a uma bola de futebol.</p>
+                        
+                        <div class="image-placeholder">
+                            <i class="fas fa-volleyball-ball"></i>
+                            <p>Estrutura do fulereno C60</p>
+                        </div>
+                        
+                        <p><strong>Propriedades:</strong></p>
+                        <ul>
+                            <li>Estabilidade química</li>
+                            <li>Solubilidade em solventes orgânicos</li>
+                            <li>Potencial aplicações médicas</li>
+                            <li>Supercondutividade quando dopados</li>
+                        </ul>
+                        
+                        <h4>4. Nanotubos de Carbono</h4>
+                        <p>Descobertos por Sumio Iijima em 1991, os nanotubos de carbono são estruturas cilíndricas de carbono com diâmetro na escala nanométrica e comprimento que pode chegar a vários micrômetros.</p>
+                        
+                        <div class="image-placeholder">
+                            <i class="fas fa-dna"></i>
+                            <p>Estrutura de um nanotubo de carbono</p>
+                        </div>
+                        
+                        <p><strong>Classificação:</strong></p>
+                        <ul>
+                            <li><strong>Nanotubos de parede simples (SWCNT):</strong> Consistem em uma única camada de grafeno enrolada</li>
+                            <li><strong>Nanotubos de parede múltipla (MWCNT):</strong> Consistem em múltiplos tubos concêntricos</li>
+                        </ul>
+                        
+                        <h4>5. Grafeno</h4>
+                        <p>Isolado em 2004 por Andre Geim e Konstantin Novoselov (Prêmio Nobel de Física 2010), o grafeno é uma única camada de átomos de carbono arranjados em uma rede hexagonal bidimensional.</p>
+                        
+                        <div class="image-placeholder">
+                            <i class="fas fa-th"></i>
+                            <p>Estrutura hexagonal do grafeno</p>
+                        </div>
+                        
+                        <p><strong>Propriedades extraordinárias:</strong></p>
+                        <ul>
+                            <li>Condutividade elétrica excepcional</li>
+                            <li>Condutividade térmica superior à do diamante</li>
+                            <li>Resistência mecânica 200 vezes maior que o aço</li>
+                            <li>Transparência óptica</li>
+                            <li>Flexibilidade</li>
+                        </ul>
+                        
+                        <h3>Estrutura e Propriedades dos Nanotubos de Carbono</h3>
+                        <p>Os nanotubos de carbono (NTC) são talvez as nanoestruturas mais estudadas devido às suas propriedades únicas e potencial de aplicação.</p>
+                        
+                        <h4>Índices de Hamada (n,m)</h4>
+                        <p>A estrutura de um nanotubo de parede simples é definida pelos índices de Hamada (n,m), que descrevem como a folha de grafeno é enrolada para formar o tubo.</p>
+                        
+                        <div class="image-placeholder">
+                            <i class="fas fa-project-diagram"></i>
+                            <p>Representação dos índices de Hamada (n,m)</p>
+                        </div>
+                        
+                        <p>Os índices (n,m) determinam:</p>
+                        <ul>
+                            <li>O diâmetro do nanotubo</li>
+                            <li>O ângulo de helicidade (quiralidade)</li>
+                            <li>As propriedades eletrônicas</li>
+                        </ul>
+                        
+                        <p>Dependendo dos valores de n e m, os nanotubos podem ser:</p>
+                        <ul>
+                            <li><strong>Metálicos:</strong> Quando n - m é múltiplo de 3</li>
+                            <li><strong>Semicondutores:</strong> Quando n - m não é múltiplo de 3</li>
+                        </ul>
+                        
+                        <h4>Propriedades Mecânicas</h4>
+                        <p>Os nanotubos de carbono possuem propriedades mecânicas excepcionais:</p>
+                        
+                        <ul>
+                            <li><strong>Resistência à tração:</strong> Aproximadamente 100 vezes maior que o aço</li>
+                            <li><strong>Módulo de Young:</strong> Cerca de 1 TPa (terapascal)</li>
+                            <li><strong>Flexibilidade:</strong> Podem ser dobrados sem quebrar</li>
+                            <li><strong>Leveza:</strong> Densidade muito baixa</li>
+                        </ul>
+                        
+                        <h4>Propriedades Elétricas</h4>
+                        <p>As propriedades elétricas dos NTC dependem de sua estrutura:</p>
+                        
+                        <ul>
+                            <li><strong>Condutividade:</strong> Podem ser condutores ou semicondutores</li>
+                            <li><strong>Capacidade de corrente:</strong> Suportam densidades de corrente até 1000 vezes maiores que o cobre</li>
+                            <li><strong>Transporte balístico:</strong> Elétrons podem viajar longas distâncias sem espalhamento</li>
+                        </ul>
+                        
+                        <h4>Propriedades Térmicas</h4>
+                        <p>Os NTC apresentam condutividade térmica excepcional:</p>
+                        
+                        <ul>
+                            <li>Condutividade térmica axial comparável à do diamante</li>
+                            <li>Estabilidade térmica até 600°C no ar e 2800°C no vácuo</li>
+                        </ul>
+                        
+                        <div class="concept-box">
+                            <h5>Curiosidade:</h5>
+                            <p>Se fosse possível construir um cabo para um elevador espacial usando nanotubos de carbono, ele teria apenas 1 cm de diâmetro para suportar o peso necessário!</p>
+                        </div>
+                        
+                        <h3>Quiz de Verificação</h3>
+                        <div class="interactive-section">
+                            <p>Responda às perguntas abaixo para verificar seu entendimento:</p>
+                            
+                            <div class="mb-3">
+                                <p>1. Qual das seguintes NÃO é uma forma alotrópica do carbono?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q1" id="q1a">
+                                    <label class="form-check-label" for="q1a">Grafite</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q1" id="q1b">
+                                    <label class="form-check-label" for="q1b">Diamante</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q1" id="q1c">
+                                    <label class="form-check-label" for="q1c">Quartzo</label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <p>2. Quem descobriu os nanotubos de carbono?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q2" id="q2a">
+                                    <label class="form-check-label" for="q2a">Richard Feynman</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q2" id="q2b">
+                                    <label class="form-check-label" for="q2b">Sumio Iijima</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q2" id="q2c">
+                                    <label class="form-check-label" for="q2c">Andre Geim</label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <p>3. Qual método é mais utilizado para produção em larga escala de nanotubos?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q3" id="q3a">
+                                    <label class="form-check-label" for="q3a">Descarga de arco elétrico</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q3" id="q3b">
+                                    <label class="form-check-label" for="q3b">Deposição Química de Vapor (CVD)</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q3" id="q3c">
+                                    <label class="form-check-label" for="q3c">Ablação a laser</label>
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-custom" onclick="checkQuiz('module2')">Verificar Respostas</button>
+                            <div id="quizResult-module2" class="mt-3"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Module 3 -->
+                    <div class="timeline-item" style="animation-delay: 0.3s;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <h3 class="timeline-title">Módulo 3</h3>
+                            <h4 class="timeline-title">Aplicações da Nanotecnologia</h4>
+                            <p class="timeline-description">Eletrônica, materiais, biotecnologia e energia</p>
+                            <ul class="timeline-topics">
+                                <li><i class="fas fa-check-circle"></i> Eletrônica avançada</li>
+                                <li><i class="fas fa-check-circle"></i> Materiais inovadores</li>
+                                <li><i class="fas fa-check-circle"></i> Aplicações médicas</li>
+                            </ul>
+                            <button class="btn btn-module" onclick="toggleModule('module3')">
+                                <i class="fas fa-arrow-right"></i> Acessar Módulo
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Module 3 Content -->
+                    <div id="module3" class="module-detail">
+                        <button class="close-module" onclick="toggleModule('module3')">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <div class="module-header">
+                            <div class="d-flex align-items-center">
+                                <div class="module-number">3</div>
+                                <h2 class="module-title">Aplicações da Nanotecnologia</h2>
+                            </div>
+                        </div>
+                        
+                        <h3>Introdução às Aplicações</h3>
+                        <p>As propriedades únicas dos nanomateriais, especialmente dos nanotubos de carbono e do grafeno, abriram um universo de aplicações em diversas áreas do conhecimento. Este módulo explora as aplicações mais promissoras e impactantes da nanotecnologia.</p>
+                        
+                        <div class="concept-box">
+                            <h5>Conceito-chave:</h5>
+                            <p>A nanotecnologia não é uma indústria específica, mas uma tecnologia habilitadora que pode revolucionar múltiplos setores.</p>
+                        </div>
+                        
+                        <h3>Aplicações em Eletrônica e Comunicações</h3>
+                        <p>A eletrônica é uma das áreas mais impactadas pela nanotecnologia. A miniaturização contínua dos dispositivos eletrônicos alcançou limites físicos com a tecnologia de silício, e os nanomateriais oferecem novas soluções.</p>
+                        
+                        <h4>1. Transistores de Alta Frequência</h4>
+                        <p>Os nanotubos de carbono são candidatos ideais para substituir o silício em transistores devido às suas propriedades eletrônicas excepcionais:</p>
+                        
+                        <ul>
+                            <li><strong>Mobilidade de elétrons:</strong> Até 100 vezes maior que no silício</li>
+                            <li><strong>Transporte balístico:</strong> Elétrons viajam sem espalhamento</li>
+                            <li><strong>Comutação rápida:</strong> Potencial para operar em frequências acima de 100 GHz</li>
+                        </ul>
+                        
+                        <div class="image-placeholder">
+                            <i class="fas fa-microchip"></i>
+                            <p>Transistor baseado em nanotubo de carbono</p>
+                        </div>
+                        
+                        <p><strong>Aplicações específicas:</strong></p>
+                        <ul>
+                            <li><strong>Tecnologia 5G e 6G:</strong> Componentes de alta frequência para estações base e dispositivos móveis</li>
+                            <li><strong>Comunicações militares:</strong> Rádios táticos resistentes a interferências e com baixa probabilidade de interceptação</li>
+                            <li><strong>Sistemas de radar:</strong> Detectores de alta sensibilidade</li>
+                        </ul>
+                        
+                        <h4>2. Circuitos Integrados Flexíveis</h4>
+                        <p>A combinação de nanotubos de carbono com substratos flexíveis permite a criação de eletrônica dobrável e vestível:</p>
+                        
+                        <ul>
+                            <li><strong>Displays flexíveis:</strong> Telas que podem ser enroladas ou dobradas</li>
+                            <li><strong>Sensores vestíveis:</strong> Monitoramento de sinais vitais diretamente na pele</li>
+                            <li><strong>Eletrônica descartável:</strong> Dispositivos médicos de baixo custo</li>
+                        </ul>
+                        
+                        <h4>3. Memórias de Alta Densidade</h4>
+                        <p>Os nanotubos de carbono podem ser usados para criar memórias não voláteis com alta densidade de armazenamento:</p>
+                        
+                        <ul>
+                            <li><strong>Memórias resistivas (ReRAM):</strong> Baseadas na mudança de resistência elétrica</li>
+                            <li><strong>Memórias de acesso aleatório (NRAM):</strong> Utilizam o movimento físico dos nanotubos</li>
+                        </ul>
+                        
+                        <div class="concept-box">
+                            <h5>Impacto:</h5>
+                            <p>Transistores de nanotubos podem operar em frequências terahertz, abrindo portas para comunicações ultrarrápidas e processamento de dados exponencialmente mais eficiente.</p>
+                        </div>
+                        
+                        <h3>Aplicações em Materiais Avançados</h3>
+                        <p>A incorporação de nanomateriais em matrizes convencionais resulta em compósitos com propriedades melhoradas ou completamente novas.</p>
+                        
+                        <h4>1. Compósitos Poliméricos Reforçados</h4>
+                        <p>A adição de pequenas quantidades de nanotubos de carbono a polímeros pode melhorar significativamente suas propriedades mecânicas:</p>
+                        
+                        <ul>
+                            <li><strong>Resistência mecânica:</strong> Aumentos de 20-100% com apenas 1% de nanotubos</li>
+                            <li><strong>Condutividade elétrica:</strong> Transforma isolantes em condutores</li>
+                            <li><strong>Estabilidade térmica:</strong> Aumenta a temperatura de degradação</li>
+                        </ul>
+                        
+                        <p><strong>Aplicações:</strong></p>
+                        <ul>
+                            <li><strong>Indústria automotiva:</strong> Peças mais leves e resistentes</li>
+                            <li><strong>Aeroespacial:</strong> Componentes estruturais de aeronaves</li>
+                            <li><strong>Equipamentos esportivos:</strong> Raquetes de tênis, bicicletas, capacetes</li>
+                        </ul>
+                        
+                        <h4>2. Materiais Adsorventes</h4>
+                        <p>A alta área superficial dos nanotubos de carbono os torna excelentes materiais para adsorção:</p>
+                        
+                        <ul>
+                            <li><strong>Remoção de poluentes:</strong> Adsorção de NOₓ, SO₂ e outros gases tóxicos</li>
+                            <li><strong>Purificação de água:</strong> Remoção de metais pesados e compostos orgânicos</li>
+                            <li><strong>Armazenamento de gases:</strong> Hidrogênio para células a combustível</li>
+                        </ul>
+                        
+                        <div class="image-placeholder">
+                            <i class="fas fa-water"></i>
+                            <p>Sistema de filtragem de água usando nanotubos de carbono</p>
+                        </div>
+                        
+                        <h3>Quiz de Verificação</h3>
+                        <div class="interactive-section">
+                            <p>Responda às perguntas abaixo para verificar seu entendimento:</p>
+                            
+                            <div class="mb-3">
+                                <p>1. Qual é uma aplicação promissora dos nanotubos de carbono na eletrônica?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q1" id="q1a">
+                                    <label class="form-check-label" for="q1a">Capacitores de alta tensão</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q1" id="q1b">
+                                    <label class="form-check-label" for="q1b">Transistores de alta frequência</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q1" id="q1c">
+                                    <label class="form-check-label" for="q1c">Resistores de baixa potência</label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <p>2. Como os nanotubos podem ser usados na medicina?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q2" id="q2a">
+                                    <label class="form-check-label" for="q2a">Apenas como material de construção</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q2" id="q2b">
+                                    <label class="form-check-label" for="q2b">Como biossensores e sistemas de entrega de medicamentos</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q2" id="q2c">
+                                    <label class="form-check-label" for="q2c">Apenas para imagens médicas</label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <p>3. Qual é uma aplicação ambiental dos nanotubos?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q3" id="q3a">
+                                    <label class="form-check-label" for="q3a">Remoção de metais pesados da água</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q3" id="q3b">
+                                    <label class="form-check-label" for="q3b">Produção de plásticos</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q3" id="q3c">
+                                    <label class="form-check-label" for="q3c">Geração de energia nuclear</label>
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-custom" onclick="checkQuiz('module3')">Verificar Respostas</button>
+                            <div id="quizResult-module3" class="mt-3"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Module 4 -->
+                    <div class="timeline-item" style="animation-delay: 0.4s;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <h3 class="timeline-title">Módulo 4</h3>
+                            <h4 class="timeline-title">Impactos e Ética</h4>
+                            <p class="timeline-description">Aspectos sociais, ambientais e regulatórios</p>
+                            <ul class="timeline-topics">
+                                <li><i class="fas fa-check-circle"></i> Impactos econômicos</li>
+                                <li><i class="fas fa-check-circle"></i> Riscos ambientais</li>
+                                <li><i class="fas fa-check-circle"></i> Questões éticas</li>
+                            </ul>
+                            <button class="btn btn-module" onclick="toggleModule('module4')">
+                                <i class="fas fa-arrow-right"></i> Acessar Módulo
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Module 4 Content -->
+                    <div id="module4" class="module-detail">
+                        <button class="close-module" onclick="toggleModule('module4')">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <div class="module-header">
+                            <div class="d-flex align-items-center">
+                                <div class="module-number">4</div>
+                                <h2 class="module-title">Impactos e Ética da Nanotecnologia</h2>
+                            </div>
+                        </div>
+                        
+                        <h3>Introdução aos Impactos Sociais</h3>
+                        <p>Assim como qualquer tecnologia disruptiva, a nanotecnologia traz consigo uma série de implicações sociais, econômicas, ambientais e éticas que precisam ser cuidadosamente consideradas. Este módulo explora os múltiplos aspectos do desenvolvimento e aplicação da nanotecnologia na sociedade.</p>
+                        
+                        <div class="concept-box">
+                            <h5>Conceito-chave:</h5>
+                            <p>O desenvolvimento tecnológico deve ser acompanhado por uma reflexão crítica sobre seus impactos e pela criação de frameworks regulatórios adequados.</p>
+                        </div>
+                        
+                        <h3>Impactos Econômicos</h3>
+                        <p>A nanotecnologia tem o potencial de transformar significativamente a economia global, criando novas indústrias e mercados.</p>
+                        
+                        <h4>1. Criação de Novos Mercados</h4>
+                        <p>Estima-se que o mercado global de nanotecnologia alcance trilhões de dólares nas próximas décadas. Setores que serão impactados:</p>
+                        
+                        <ul>
+                            <li><strong>Eletrônica:</strong> Dispositivos mais rápidos e eficientes</li>
+                            <li><strong>Medicina:</strong> Diagnósticos e tratamentos inovadores</li>
+                            <li><strong>Energia:</strong> Soluções para armazenamento e geração</li>
+                            <li><strong>Materiais:</strong> Compósitos avançados</li>
+                            <li><strong>Agricultura:</strong> Fertilizantes e pesticidas de liberação controlada</li>
+                        </ul>
+                        
+                        <h4>2. Disrupção de Indústrias Existentes</h4>
+                        <p>A nanotecnologia pode tornar obsoletas tecnologias atuais:</p>
+                        
+                        <ul>
+                            <li><strong>Indústria de semicondutores:</strong> Substituição do silício por materiais nanoestruturados</li>
+                            <li><strong>Setor de energia:</strong> Novas formas de armazenamento e geração</li>
+                            <li><strong>Manufatura:</strong> Processos mais eficientes e sustentáveis</li>
+                        </ul>
+                        
+                        <h3>Impactos Ambientais</h3>
+                        <p>Embora a nanotecnologia ofereça soluções para problemas ambientais, seu ciclo de vida completo também apresenta riscos potenciais.</p>
+                        
+                        <h4>1. Benefícios Ambientais</h4>
+                        <p>Aplicações que podem contribuir para a sustentabilidade:</p>
+                        
+                        <ul>
+                            <li><strong>Remediação ambiental:</strong> Nanomateriais para limpeza de contaminantes</li>
+                            <li><strong>Eficiência energética:</strong> Materiais que reduzem o consumo de energia</li>
+                            <li><strong>Agricultura de precisão:</strong> Redução do uso de agroquímicos</li>
+                            <li><strong>Monitoramento ambiental:</strong> Sensores para detecção de poluentes</li>
+                        </ul>
+                        
+                        <h4>2. Riscos Ambientais</h4>
+                        <p>Preocupações relacionadas ao ciclo de vida dos nanomateriais:</p>
+                        
+                        <ul>
+                            <li><strong>Produção:</strong> Consumo de energia e recursos</li>
+                            <li><strong>Liberação acidental:</strong> Durante fabricação e uso</li>
+                            <li><strong>Descarte:</strong> Acúmulo no meio ambiente</li>
+                            <li><strong>Toxicidade:</strong> Efeitos em ecossistemas</li>
+                        </ul>
+                        
+                        <div class="concept-box">
+                            <h5>Paradoxo ambiental:</h5>
+                            <p>Os mesmos nanomateriais que podem remediar problemas ambientais também podem se tornar poluentes se não forem adequadamente gerenciados.</p>
+                        </div>
+                        
+                        <h3>Quiz de Verificação</h3>
+                        <div class="interactive-section">
+                            <p>Responda às perguntas abaixo para verificar seu entendimento:</p>
+                            
+                            <div class="mb-3">
+                                <p>1. Qual é um dos principais riscos ambientais associados aos nanomateriais?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q1" id="q1a">
+                                    <label class="form-check-label" for="q1a">Aumento da biodiversidade</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q1" id="q1b">
+                                    <label class="form-check-label" for="q1b">Acúmulo no meio ambiente e toxicidade</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q1" id="q1c">
+                                    <label class="form-check-label" for="q1c">Redução do consumo de energia</label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <p>2. Qual princípio é fundamental para a governança responsável da nanotecnologia?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q2" id="q2a">
+                                    <label class="form-check-label" for="q2a">Maximização do lucro</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q2" id="q2b">
+                                    <label class="form-check-label" for="q2b">Princípio da precaução</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q2" id="q2c">
+                                    <label class="form-check-label" for="q2c">Desregulamentação total</label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <p>3. Qual é um dilema ético associado ao melhoramento humano com nanotecnologia?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q3" id="q3a">
+                                    <label class="form-check-label" for="q3a">Aumento da expectativa de vida</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q3" id="q3b">
+                                    <label class="form-check-label" for="q3b">Definição do que é "humano" e acesso equitativo</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q3" id="q3c">
+                                    <label class="form-check-label" for="q3c">Melhora na qualidade de vida</label>
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-custom" onclick="checkQuiz('module4')">Verificar Respostas</button>
+                            <div id="quizResult-module4" class="mt-3"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Module 5 -->
+                    <div class="timeline-item" style="animation-delay: 0.5s;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                            <h3 class="timeline-title">Módulo 5</h3>
+                            <h4 class="timeline-title">Ensino e Didática</h4>
+                            <p class="timeline-description">Estratégias pedagógicas e atividades práticas</p>
+                            <ul class="timeline-topics">
+                                <li><i class="fas fa-check-circle"></i> Abordagens CTS</li>
+                                <li><i class="fas fa-check-circle"></i> Atividades de baixo custo</li>
+                                <li><i class="fas fa-check-circle"></i> Planejamento de aulas</li>
+                            </ul>
+                            <button class="btn btn-module" onclick="toggleModule('module5')">
+                                <i class="fas fa-arrow-right"></i> Acessar Módulo
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Module 5 Content -->
+                    <div id="module5" class="module-detail">
+                        <button class="close-module" onclick="toggleModule('module5')">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <div class="module-header">
+                            <div class="d-flex align-items-center">
+                                <div class="module-number">5</div>
+                                <h2 class="module-title">Ensino e Didática da Nanociência</h2>
+                            </div>
+                        </div>
+                        
+                        <h3>Introdução ao Ensino de Nanociência</h3>
+                        <p>O ensino de nanociência e nanotecnologia no nível médio apresenta desafios únicos devido à natureza abstrata dos conceitos e à necessidade de equipamentos sofisticados para observação direta. Este módulo explora estratégias didáticas para tornar esses conceitos acessíveis e significativos para os estudantes.</p>
+                        
+                        <div class="concept-box">
+                            <h5>Conceito-chave:</h5>
+                            <p>O ensino de nanociência requer uma abordagem multidisciplinar que conecte conceitos de física, química, biologia e matemática de forma integrada.</p>
+                        </div>
+                        
+                        <h3>Desafios no Ensino de Nanociência</h3>
+                        <p>A introdução da nanotecnologia no currículo do ensino médio enfrenta várias barreiras:</p>
+                        
+                        <h4>1. Abstração dos Conceitos</h4>
+                        <p>Conceitos como confinamento quântico e efeito túnel são difíceis de visualizar e compreender sem uma base matemática avançada.</p>
+                        
+                        <h4>2. Limitações Experimentais</h4>
+                        <p>A maioria das escolas não possui microscópios eletrônicos ou outros equipamentos necessários para observar nanoestruturas.</p>
+                        
+                        <h4>3. Formação de Professores</h4>
+                        <p>Muitos professores não receberam formação específica em nanotecnologia durante sua graduação.</p>
+                        
+                        <h4>4. Material Didático Limitado</h4>
+                        <p>Escassez de livros didáticos e recursos adaptados ao nível médio.</p>
+                        
+                        <h4>5. Integração Curricular</h4>
+                        <p>Dificuldade em integrar a nanotecnologia ao currículo existente sem sobrecarregá-lo.</p>
+                        
+                        <div class="concept-box">
+                            <h5>Estratégia:</h5>
+                            <p>Superar esses desafios requer criatividade, recursos de baixo custo e uma abordagem que conecte a nanotecnologia ao cotidiano dos estudantes.</p>
+                        </div>
+                        
+                        <h3>Atividades de Baixo Custo</h3>
+                        <p>É possível ensinar conceitos de nanociência com materiais simples e acessíveis:</p>
+                        
+                        <h4>1. Explorando Escalas</h4>
+                        <p><strong>Objetivo:</strong> Compreender as diferentes escalas de tamanho.</p>
+                        <p><strong>Materiais:</strong> Papel, tesoura, régua.</p>
+                        <p><strong>Procedimento:</strong></p>
+                        <ol>
+                            <li>Comece com uma folha de papel (cerca de 0,1 mm de espessura).</li>
+                            <li>Dobre a folha ao meio repetidamente.</li>
+                            <li>Conte quantas vezes é possível dobrar antes que se torne impossível.</li>
+                            <li>Calcule a espessura após cada dobra (0,1 mm, 0,2 mm, 0,4 mm...).</li>
+                            <li>Discuta: Quantas dobras seriam necessárias para chegar à escala nanométrica?</li>
+                        </ol>
+                        
+                        <h4>2. Extração de DNA com Materiais Caseiros</h4>
+                        <p><strong>Objetivo:</strong> Demonstrar que podemos manipular moléculas biológicas em escala nanométrica.</p>
+                        <p><strong>Materiais:</strong> Frutas (morango ou banana), detergente líquido, sal, álcool, filtro de café, copo.</p>
+                        <p><strong>Procedimento:</p>
+                        <ol>
+                            <li>Amasse a fruta e misture com água e sal.</li>
+                            <li>Adicione detergente e misture suavemente.</li>
+                            <li>Filtre a mistura para remover pedaços sólidos.</li>
+                            <li>Adicione álcool gelado lentamente pela parede do copo.</li>
+                            <li>Observe a formação de fios brancos (DNA) na interface.</li>
+                            <li>Discuta: O DNA tem aproximadamente 2,5 nanômetros de diâmetro.</li>
+                        </ol>
+                        
+                        <div class="image-placeholder">
+                            <i class="fas fa-vial"></i>
+                            <p>Extração de DNA com materiais caseiros</p>
+                        </div>
+                        
+                        <h3>Quiz de Verificação</h3>
+                        <div class="interactive-section">
+                            <p>Responda às perguntas abaixo para verificar seu entendimento:</p>
+                            
+                            <div class="mb-3">
+                                <p>1. Qual é um dos principais desafios no ensino de nanociência?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q1" id="q1a">
+                                    <label class="form-check-label" for="q1a">Falta de interesse dos estudantes</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q1" id="q1b">
+                                    <label class="form-check-label" for="q1b">Abstração dos conceitos e limitações experimentais</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q1" id="q1c">
+                                    <label class="form-check-label" for="q1c">Excesso de material didático</label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <p>2. Qual abordagem pedagógica conecta ciência, tecnologia e sociedade?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q2" id="q2a">
+                                    <label class="form-check-label" for="q2a">Abordagem tradicional</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q2" id="q2b">
+                                    <label class="form-check-label" for="q2b">Abordagem Ciência-Tecnologia-Sociedade (CTS)</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q2" id="q2c">
+                                    <label class="form-check-label" for="q2c">Abordagem behaviorista</label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <p>3. Qual atividade pode ser realizada com materiais caseiros para ensinar nanociência?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q3" id="q3a">
+                                    <label class="form-check-label" for="q3a">Extração de DNA com frutas e detergentes</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q3" id="q3b">
+                                    <label class="form-check-label" for="q3b">Observação de estrelas com telescópio</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q3" id="q3c">
+                                    <label class="form-check-label" for="q3c">Dissecação de animais</label>
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-custom" onclick="checkQuiz('module5')">Verificar Respostas</button>
+                            <div id="quizResult-module5" class="mt-3"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Module 6 -->
+                    <div class="timeline-item" style="animation-delay: 0.6s;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <h3 class="timeline-title">Módulo 6</h3>
+                            <h4 class="timeline-title">Pesquisa no Brasil</h4>
+                            <p class="timeline-description">Grupos de pesquisa e iniciativas nacionais</p>
+                            <ul class="timeline-topics">
+                                <li><i class="fas fa-check-circle"></i> Principais grupos</li>
+                                <li><i class="fas fa-check-circle"></i> Linhas de pesquisa</li>
+                                <li><i class="fas fa-check-circle"></i> Formação de recursos</li>
+                            </ul>
+                            <button class="btn btn-module" onclick="toggleModule('module6')">
+                                <i class="fas fa-arrow-right"></i> Acessar Módulo
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Module 6 Content -->
+                    <div id="module6" class="module-detail">
+                        <button class="close-module" onclick="toggleModule('module6')">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <div class="module-header">
+                            <div class="d-flex align-items-center">
+                                <div class="module-number">6</div>
+                                <h2 class="module-title">Pesquisa em Nanotecnologia no Brasil</h2>
+                            </div>
+                        </div>
+                        
+                        <h3>Introdução à Pesquisa Brasileira</h3>
+                        <p>O Brasil tem se destacado na pesquisa em nanotecnologia, com grupos de referência mundial em diversas áreas. Este módulo apresenta o panorama da pesquisa em nanotecnologia no país, os principais grupos de pesquisa, linhas de investigação e iniciativas educacionais.</p>
+                        
+                        <div class="concept-box">
+                            <h5>Conceito-chave:</h5>
+                            <p>A pesquisa em nanotecnologia no Brasil é caracterizada pela colaboração interinstitucional e pela busca por soluções para desafios nacionais.</p>
+                        </div>
+                        
+                        <h3>Panorama Geral da Pesquisa</h3>
+                        <p>A nanotecnologia foi identificada como área estratégica pelo governo brasileiro no início dos anos 2000, levando à criação de programas de fomento e redes de pesquisa.</p>
+                        
+                        <h4>1. Histórico da Nanotecnologia no Brasil</h4>
+                        <p>Os marcos importantes no desenvolvimento da nanotecnologia brasileira:</p>
+                        
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <h5>2001 - Lançamento do Programa Nacional de Nanotecnologia</h5>
+                                <p>O governo federal lança o primeiro programa específico para a área, com investimento inicial de R$ 40 milhões.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5>2002 - Criação das Redes de Pesquisa</h5>
+                                <p>Formação das primeiras redes temáticas em nanotecnologia, reunindo grupos de diferentes instituições.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5>2005 - Implantação do SisNANO</h5>
+                                <p>Criação do Sistema Nacional de Laboratórios em Nanotecnologia, com quatro laboratórios associados.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5>2010 - Expansão da Infraestrutura</h5>
+                                <p>Investimentos de mais de R$ 500 milhões em equipamentos e infraestrutura para pesquisa em nanotecnologia.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5>2015 - Foco em Inovação</h5>
+                                <p>Mudança de ênfase da pesquisa básica para aplicações e transferência de tecnologia.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5>2020 - Nanotecnologia na Pandemia</h5>
+                                <p>Grupos brasileiros desenvolvem soluções nanotecnológicas para combate à COVID-19.</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Principais Grupos de Pesquisa</h3>
+                        <p>O Brasil conta com dezenas de grupos de excelência em nanotecnologia, distribuídos em diversas instituições.</p>
+                        
+                        <h4>1. UNICAMP - Universidade Estadual de Campinas</h4>
+                        <p>A UNICAMP é uma das instituições líderes em pesquisa em nanotecnologia no Brasil.</p>
+                        
+                        <p><strong>Principais linhas de pesquisa:</strong></p>
+                        <ul>
+                            <li><strong>Nanotubos de carbono:</strong> Síntese, caracterização e aplicações</li>
+                            <li><strong>Dispositivos nanoestruturados:</strong> Sensores e transistores</li>
+                            <li><strong>Nanomedicina:</strong> Sistemas de entrega de fármacos</li>
+                        </ul>
+                        
+                        <h4>2. UFMG - Universidade Federal de Minas Gerais</h4>
+                        <p>A UFMG destaca-se em nanomateriais e suas aplicações.</p>
+                        
+                        <p><strong>Principais linhas de pesquisa:</strong></p>
+                        <ul>
+                            <li><strong>Grafeno e materiais 2D:</strong> Síntese e propriedades</li>
+                            <li><strong>Nanopartículas magnéticas:</strong> Aplicações biomédicas</li>
+                            <li><strong>Nanocompósitos:</strong> Materiais avançados para engenharia</li>
+                        </ul>
+                        
+                        <div class="image-placeholder">
+                            <i class="fas fa-university"></i>
+                            <p>Mapa dos principais grupos de pesquisa em nanotecnologia no Brasil</p>
+                        </div>
+                        
+                        <h3>Quiz de Verificação</h3>
+                        <div class="interactive-section">
+                            <p>Responda às perguntas abaixo para verificar seu entendimento:</p>
+                            
+                            <div class="mb-3">
+                                <p>1. Qual universidade é reconhecida como líder em pesquisa em nanotecnologia no Brasil?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q1" id="q1a">
+                                    <label class="form-check-label" for="q1a">UNICAMP</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q1" id="q1b">
+                                    <label class="form-check-label" for="q1b">UFMG</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q1" id="q1c">
+                                    <label class="form-check-label" for="q1c">USP</label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <p>2. Qual é uma das principais linhas de pesquisa desenvolvidas no Brasil?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q2" id="q2a">
+                                    <label class="form-check-label" for="q2a">Síntese e caracterização de nanomateriais</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q2" id="q2b">
+                                    <label class="form-check-label" for="q2b">Produção de combustíveis fósseis</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q2" id="q2c">
+                                    <label class="form-check-label" for="q2c">Desenvolvimento de software</label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <p>3. Qual é um dos desafios enfrentados pela pesquisa em nanotecnologia no Brasil?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q3" id="q3a">
+                                    <label class="form-check-label" for="q3a">Excesso de financiamento</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q3" id="q3b">
+                                    <label class="form-check-label" for="q3b">Financiamento instável e fuga de cérebros</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="q3" id="q3c">
+                                    <label class="form-check-label" for="q3c">Falta de interesse dos pesquisadores</label>
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-custom" onclick="checkQuiz('module6')">Verificar Respostas</button>
+                            <div id="quizResult-module6" class="mt-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5>NanoTec AVA</h5>
+                    <p>Ambiente Virtual de Aprendizagem sobre Nanotecnologia, desenvolvido para estudantes e pesquisadores.</p>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Links Rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#modules">Módulos</a></li>
+                        <li><a href="#activities">Atividades</a></li>
+                        <li><a href="#resources">Recursos</a></li>
+                        <li><a href="#evaluation">Avaliação</a></li>
+                    </ul>
+                </div>
+            <hr class="my-4 bg-white">
+            <div class="text-center">
+                <p>&copy; 2023 NanoTec AVA. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        // Simulador de Nanotubos
+        const canvas = document.getElementById('nanoCanvas');
+        const ctx = canvas.getContext('2d');
+        let angle = 0;
+        let isDragging = false;
+        let lastX = 0;
+
+        function drawNanoTube() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.save();
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.rotate(angle);
+            
+            // Desenhar estrutura hexagonal do nanotubo
+            ctx.strokeStyle = '#00acc1';
+            ctx.lineWidth = 2;
+            
+            const radius = 60;
+            const height = 150;
+            const segments = 8;
+            
+            // Desenhar os anéis hexagonais
+            for (let i = 0; i < segments; i++) {
+                const y = (i - segments / 2) * 20;
+                
+                ctx.beginPath();
+                for (let j = 0; j < 6; j++) {
+                    const a = (j * Math.PI * 2) / 6;
+                    const x = Math.cos(a) * radius;
+                    const z = Math.sin(a) * radius;
+                    
+                    if (j === 0) {
+                        ctx.moveTo(x, y);
+                    } else {
+                        ctx.lineTo(x, y);
+                    }
+                }
+                ctx.closePath();
+                ctx.stroke();
+                
+                // Conectar anéis adjacentes
+                if (i < segments - 1) {
+                    for (let j = 0; j < 6; j++) {
+                        const a = (j * Math.PI * 2) / 6;
+                        const x = Math.cos(a) * radius;
+                        const z = Math.sin(a) * radius;
+                        
+                        ctx.beginPath();
+                        ctx.moveTo(x, y);
+                        ctx.lineTo(x, y + 20);
+                        ctx.stroke();
+                    }
+                }
+            }
+            
+            ctx.restore();
+        }
+
+        function animate() {
+            if (!isDragging) {
+                angle += 0.01;
+            }
+            drawNanoTube();
+            requestAnimationFrame(animate);
+        }
+
+        canvas.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            lastX = e.clientX;
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                const deltaX = e.clientX - lastX;
+                angle += deltaX * 0.01;
+                lastX = e.clientX;
+            }
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        canvas.addEventListener('mouseleave', () => {
+            isDragging = false;
+        });
+
+        animate();
+
+        // Função para alternar a exibição dos módulos
+        function toggleModule(moduleId) {
+            const module = document.getElementById(moduleId);
+            
+            if (module.classList.contains('active')) {
+                module.classList.remove('active');
+            } else {
+                // Fechar todos os outros módulos primeiro
+                document.querySelectorAll('.module-detail').forEach(m => {
+                    m.classList.remove('active');
+                });
+                
+                // Abrir o módulo selecionado
+                module.classList.add('active');
+                
+                // Rolar para o módulo
+                setTimeout(() => {
+                    module.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+        }
+
+        // Quiz functionality
+        let currentQuestion = 0;
+        let score = 0;
+        const questions = document.querySelectorAll('.quiz-question');
+        const nextButton = document.getElementById('nextQuestion');
+        const restartButton = document.getElementById('restartQuiz');
+        const resultDiv = document.getElementById('quizResult');
+
+        nextButton.addEventListener('click', () => {
+            const currentQ = questions[currentQuestion];
+            const options = currentQ.querySelectorAll('.quiz-option');
+            let selected = false;
+            
+            options.forEach(option => {
+                if (option.classList.contains('correct') || option.classList.contains('incorrect')) {
+                    selected = true;
+                }
+            });
+            
+            if (!selected) {
+                resultDiv.innerHTML = '<div class="alert alert-warning">Por favor, selecione uma resposta antes de continuar.</div>';
+                return;
+            }
+            
+            currentQuestion++;
+            
+            if (currentQuestion < questions.length) {
+                questions[currentQuestion - 1].classList.add('d-none');
+                questions[currentQuestion].classList.remove('d-none');
+                
+                if (currentQuestion === questions.length - 1) {
+                    nextButton.textContent = 'Ver Resultado';
+                }
+            } else {
+                questions[currentQuestion - 1].classList.add('d-none');
+                nextButton.classList.add('d-none');
+                restartButton.classList.remove('d-none');
+                
+                resultDiv.innerHTML = `<div class="alert alert-success">Você acertou ${score} de ${questions.length} perguntas!</div>`;
+            }
+        });
+
+        restartButton.addEventListener('click', () => {
+            currentQuestion = 0;
+            score = 0;
+            
+            questions.forEach(q => {
+                q.classList.add('d-none');
+                q.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.classList.remove('correct', 'incorrect');
+                });
+            });
+            
+            questions[0].classList.remove('d-none');
+            nextButton.classList.remove('d-none');
+            nextButton.textContent = 'Próxima Pergunta';
+            restartButton.classList.add('d-none');
+            resultDiv.innerHTML = '';
+        });
+
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const parent = this.parentElement;
+                const options = parent.querySelectorAll('.quiz-option');
+                
+                options.forEach(opt => {
+                    opt.classList.remove('correct', 'incorrect');
+                });
+                
+                if (this.getAttribute('data-correct') === 'true') {
+                    this.classList.add('correct');
+                    score++;
+                } else {
+                    this.classList.add('incorrect');
+                    
+                    // Mostrar a resposta correta
+                    options.forEach(opt => {
+                        if (opt.getAttribute('data-correct') === 'true') {
+                            opt.classList.add('correct');
+                        }
+                    });
+                }
+            });
+        });
+
+        // Challenge form
+        document.getElementById('challengeForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const teamName = document.getElementById('teamName').value;
+            const productName = document.getElementById('productName').value;
+            const productDescription = document.getElementById('productDescription').value;
+            const applicationArea = document.getElementById('applicationArea').value;
+            
+            const resultDiv = document.getElementById('challengeResult');
+            resultDiv.innerHTML = `
+                <div class="alert alert-success">
+                    <h5>Ideia submetida com sucesso!</h5>
+                    <p><strong>Grupo:</strong> ${teamName}</p>
+                    <p><strong>Produto:</strong> ${productName}</p>
+                    <p><strong>Área de Aplicação:</strong> ${applicationArea}</p>
+                    <p><strong>Descrição:</strong> ${productDescription}</p>
+                    <p class="mt-2">Obrigado por sua contribuição! Sua ideia será avaliada pela equipe.</p>
+                </div>
+            `;
+            
+            document.getElementById('challengeForm').reset();
+        });
+
+        // Glossary
+        document.getElementById('addTerm').addEventListener('click', () => {
+            const termInput = document.getElementById('newTerm');
+            const term = termInput.value.trim();
+            
+            if (term) {
+                const glossaryContainer = document.getElementById('glossaryContainer');
+                const newItem = document.createElement('div');
+                newItem.className = 'glossary-item';
+                newItem.innerHTML = `
+                    <div class="glossary-term">${term}</div>
+                    <div>Definição a ser adicionada...</div>
+                `;
+                
+                glossaryContainer.appendChild(newItem);
+                termInput.value = '';
+                
+                // Adicionar evento de clique para editar a definição
+                newItem.addEventListener('click', () => {
+                    const definition = newItem.querySelector('div:last-child');
+                    const currentText = definition.textContent;
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.className = 'form-control';
+                    input.value = currentText;
+                    
+                    definition.parentNode.replaceChild(input, definition);
+                    input.focus();
+                    
+                    input.addEventListener('blur', () => {
+                        const newDefinition = document.createElement('div');
+                        newDefinition.textContent = input.value || 'Definição não fornecida';
+                        input.parentNode.replaceChild(newDefinition, input);
+                    });
+                    
+                    input.addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') {
+                            input.blur();
+                        }
+                    });
+                });
+            }
+        });
+
+        // Função para verificar respostas dos quizzes dos módulos
+        function checkQuiz(moduleId) {
+            const moduleDiv = document.getElementById(moduleId);
+            const questions = moduleDiv.querySelectorAll('.interactive-section .form-check');
+            let correctAnswers = 0;
+            let totalQuestions = 0;
+            
+            questions.forEach((question, index) => {
+                const inputs = question.querySelectorAll('.form-check-input');
+                const correctInput = Array.from(inputs).find(input => {
+                    const label = input.nextElementSibling.textContent;
+                    return (moduleId === 'module1' && index === 0 && label.includes('1 a 100 nanômetros')) ||
+                           (moduleId === 'module1' && index === 1 && label.includes('Richard Feynman')) ||
+                           (moduleId === 'module1' && index === 2 && label.includes('Confinamento quântico')) ||
+                           (moduleId === 'module2' && index === 0 && label.includes('Quartzo')) ||
+                           (moduleId === 'module2' && index === 1 && label.includes('Sumio Iijima')) ||
+                           (moduleId === 'module2' && index === 2 && label.includes('Deposição Química de Vapor')) ||
+                           (moduleId === 'module3' && index === 0 && label.includes('Transistores de alta frequência')) ||
+                           (moduleId === 'module3' && index === 1 && label.includes('biossensores e sistemas de entrega de medicamentos')) ||
+                           (moduleId === 'module3' && index === 2 && label.includes('Remoção de metais pesados da água')) ||
+                           (moduleId === 'module4' && index === 0 && label.includes('Acúmulo no meio ambiente e toxicidade')) ||
+                           (moduleId === 'module4' && index === 1 && label.includes('Princípio da precaução')) ||
+                           (moduleId === 'module4' && index === 2 && label.includes('Definição do que é "humano" e acesso equitativo')) ||
+                           (moduleId === 'module5' && index === 0 && label.includes('Abstração dos conceitos e limitações experimentais')) ||
+                           (moduleId === 'module5' && index === 1 && label.includes('Abordagem Ciência-Tecnologia-Sociedade')) ||
+                           (moduleId === 'module5' && index === 2 && label.includes('Extração de DNA com frutas e detergentes')) ||
+                           (moduleId === 'module6' && index === 0 && label.includes('UNICAMP')) ||
+                           (moduleId === 'module6' && index === 1 && label.includes('Síntese e caracterização de nanomateriais')) ||
+                           (moduleId === 'module6' && index === 2 && label.includes('Financiamento instável e fuga de cérebros'));
+                });
+                
+                if (correctInput && correctInput.checked) {
+                    correctAnswers++;
+                }
+                
+                if (inputs.length > 0) {
+                    totalQuestions++;
+                }
+            });
+            
+            const resultDiv = document.getElementById(`quizResult-${moduleId}`);
+            const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+            
+            if (percentage >= 70) {
+                resultDiv.innerHTML = `
+                    <div class="alert alert-success">
+                        <h5>Ótimo trabalho!</h5>
+                        <p>Você acertou ${correctAnswers} de ${totalQuestions} perguntas (${percentage}%).</p>
+                        <p>Continue assim!</p>
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = `
+                    <div class="alert alert-warning">
+                        <h5>Continue estudando!</h5>
+                        <p>Você acertou ${correctAnswers} de ${totalQuestions} perguntas (${percentage}%).</p>
+                        <p>Revise o conteúdo e tente novamente.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Smooth scrolling para links de navegação
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
